@@ -213,7 +213,7 @@ class DepleteReactor(Facility):
             self.cycle_step = 0
         
         if (self.cycle_step == 0) and (self.core.count == self.n_assem_core):
-            #self.record("CYCLE_START", "")
+            self.record("CYCLE_START", "")
             print("Cycle start")
 
         if (self.cycle_step >=0) and (self.cycle_step < self.cycle_time) and (self.core.count == self.n_assem_core):
@@ -510,10 +510,13 @@ class DepleteReactor(Facility):
         val: str
             value of event
         '''
-        events = self.context.new_datum("ReactorEvents") # creates tables with name ReactorEvents
-        datum = lib.Datum("Event")
-        lib.Datum.add_val(datum, "Event", event)
-        events.add_val("Value", val)
+        print(event, val)
+        events = self.recorder.new_datum("ReactorEvents") # creates tables with name ReactorEvents
+        print(events)
+        #datum = lib.Datum("Event")
+        #datum.add_val(datum, "Event", event)
+        #self.context.new_datum.add_val("Event", event)
+        #events.add_val("Value", val)
         events.record()
         return
 
